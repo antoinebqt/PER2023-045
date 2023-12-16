@@ -19,11 +19,11 @@ spec:
         tls: true
     resources:
       requests:
-        memory: 8Gi
-        cpu: "4"
+        memory: 1Gi
+        cpu: "1"
       limits:
-        memory: 8Gi
-        cpu: "4"
+        memory: 1Gi
+        cpu: "1"
     readinessProbe:
       initialDelaySeconds: 15
       timeoutSeconds: 5
@@ -38,10 +38,7 @@ spec:
       min.insync.replicas: 2
       inter.broker.protocol.version: "3.4"
     storage:
-        type: persistent-claim
-        size: 40Gi
-        deleteClaim: false
-        class: longhorn
+        type: ephemeral
     metricsConfig:
       type: jmxPrometheusExporter
       valueFrom:
@@ -59,16 +56,13 @@ spec:
       timeoutSeconds: 5
     resources:
       requests:
-        memory: 2Gi
+        memory: 1Gi
         cpu: "1"
       limits:
-        memory: 2Gi
+        memory: 1Gi
         cpu: "1"
     storage:
-      type: persistent-claim
-      size: 8Gi
-      deleteClaim: false
-      class: longhorn
+      type: ephemeral
     metricsConfig:
       type: jmxPrometheusExporter
       valueFrom:
