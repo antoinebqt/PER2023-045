@@ -8,11 +8,6 @@
         name: prometheus-community
         repo_url: "https://prometheus-community.github.io/helm-charts"
 
-    - name: Update Helm repo
-      kubernetes.helm_repository:
-        name: prometheus-community
-        state: present
-
     - name: Apply Prometheus and Grafana
       kubernetes.core.helm:
         name: prometheus

@@ -3,17 +3,11 @@
   hosts: localhost
 
   tasks:
-    - name: Create Strimzi Ressources
-      kubernetes.core.k8s:
-        definition: "https://strimzi.io/install/latest?namespace=default"
-        state: present
+    - name: Apply Strimzi Ressources
+      command: kubectl apply -f https://strimzi.io/install/latest?namespace=default
 
     - name: Apply Kafka (metrics3.yaml)
-      kubernetes.core.k8s:
-        state: present
-        src: ../kubernetes/metrics3.yaml
+      command: kubectl apply -f ../kubernetes/metrics3.yaml
 
     - name: Apply Kafka Topic
-      kubernetes.core.k8s:
-        state: present
-        src: ../kubernetes/kafka-topic.yaml
+      command: kubectl apply -f ../kubernetes/kafka-topic.yaml

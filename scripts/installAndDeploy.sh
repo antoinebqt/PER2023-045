@@ -1,0 +1,2 @@
+scripts/installRequirements.sh
+scripts/deployAll.sh
