@@ -1,0 +1,19 @@
+---
+- name: Deploy Kafka Cluster
+  hosts: localhost
+
+  tasks:
+    - name: Create Strimzi Ressources
+      kubernetes.core.k8s:
+        definition: "https://strimzi.io/install/latest?namespace=default"
+        state: present
+
+    - name: Apply Kafka (metrics3.yaml)
+      kubernetes.core.k8s:
+        state: present
+        src: ../kubernetes/metrics3.yaml
+
+    - name: Apply Kafka Topic
+      kubernetes.core.k8s:
+        state: present
+        src: ../kubernetes/kafka-topic.yaml

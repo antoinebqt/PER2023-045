@@ -1,0 +1,28 @@
+---
+- name: Deploy Prometheus and Grafana
+  hosts: localhost
+
+  tasks:
+    - name: Add the Prometheus Chart Repository
+      kubernetes.core.helm_repository:
+        name: prometheus-community
+        repo_url: "https://prometheus-community.github.io/helm-charts"
+
+    - name: Update Helm repo
+      kubernetes.helm_repository:
+        name: prometheus-community
+        state: present
+
+    - name: Apply Prometheus and Grafana
+      kubernetes.core.helm:
+        name: prometheus
+        chart_ref: prometheus-community/kube-prometheus-stack
+        release_namespace: default
+        values_files:
+          - ../kubernetes/prometheus-values.yaml
+
+    - name: Port forward Grafana on localhost:8080
+      ansible.builtin.shell:
+        cmd: "kubectl port-forward svc/prometheus-grafana 8080:80 &"
+      async: 0
+      poll: 0
