@@ -1,3 +1,7 @@
+# CLEAN KUBERNETES CLUSTER
+printf "\n\033[1;36m## Cleaning Kubernetes Cluster\033[0m\n"
+./scripts/cleanCluster.sh
+
 # DOCKER
 printf "\n\033[1;36m## Uninstalling Docker\033[0m\n"
 sudo apt remove --purge -y docker-ce docker-ce-cli containerd.io
