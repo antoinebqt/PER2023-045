@@ -11,7 +11,7 @@ sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 printf "\n\033[1;36m## Installing Minikube\033[0m\n"
 curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
 sudo install minikube-linux-amd64 /usr/local/bin/minikube
-sudo minikube start --force #--cpus=4 --memory=4g
+minikube start --cpus=6 --memory=6g
 
 # HELM
 printf "\n\033[1;36m## Installing Helm\033[0m\n"
@@ -28,3 +28,5 @@ sudo apt install python3-kubernetes
 printf "\n\033[1;36m## Installing Ansible\033[0m\n"
 sudo apt update
 sudo apt install ansible
+
+printf "\n\033[1;32m## You can now run the deployAll script!\033[0m\n\n"

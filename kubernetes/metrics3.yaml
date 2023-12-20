@@ -23,7 +23,6 @@ spec:
         cpu: "1"
       limits:
         memory: 1Gi
-        cpu: "1"
     readinessProbe:
       initialDelaySeconds: 15
       timeoutSeconds: 5
@@ -60,7 +59,6 @@ spec:
         cpu: "1"
       limits:
         memory: 1Gi
-        cpu: "1"
     storage:
       type: ephemeral
     metricsConfig:

@@ -15,9 +15,3 @@
         release_namespace: default
         values_files:
           - ../kubernetes/prometheus-values.yaml
-
-    - name: Port forward Grafana on localhost:8080
-      ansible.builtin.shell:
-        cmd: "kubectl port-forward svc/prometheus-grafana 8080:80 &"
-      async: 0
-      poll: 0
