@@ -14,6 +14,8 @@ sudo rm /usr/local/bin/kubectl
 
 # MINIKUBE
 printf "\n\033[1;36m## Uninstalling Minikube\033[0m\n"
+minikube stop
+minikube delete
 sudo rm /usr/local/bin/minikube
 
 # HELM
