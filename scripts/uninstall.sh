@@ -21,6 +21,11 @@ printf "\n\033[1;36m## Uninstalling Helm\033[0m\n"
 sudo rm get_helm.sh
 sudo rm -rf /usr/local/bin/helm
 
+# Python packages
+printf "\n\033[1;36m## Uninstalling Python packages\033[0m\n"
+sudo apt remove --purge -y python3-pip
+sudo apt remove --purge -y python3-kubernetes
+
 # ANSIBLE
 printf "\n\033[1;36m## Uninstalling Ansible\033[0m\n"
 sudo apt remove --purge -y ansible
