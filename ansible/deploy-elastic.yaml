@@ -1,0 +1,19 @@
+---
+- name: Deploy Elastic Stack
+  hosts: localhost
+
+  tasks:
+    - name: Apply Elastic Priority Classes
+      command: kubectl apply -f ../elastic-stack/elastic-priority-classes.yaml
+
+    - name: Apply Elasticksearch cluster
+      command: kubectl apply -f ../elastic-stack/elasticsearch-cluster.yaml
+     
+    - name: Apply Kibana instance
+      command: kubectl apply -f ../elastic-stack/kibana-instance.yaml
+      
+    - name: Get password before command kubectl apply -f filebeat-kubernetes.yaml
+      command: kubectl get secret elastic-cluster-es-elastic-user -o go-template='{{.data.elastic | base64decode}}' -n elastic
+
+#    - name: Apply Filebeat
+#      command: kubectl apply -f ../elastic-stack/filebeat-kubernetes.yaml
