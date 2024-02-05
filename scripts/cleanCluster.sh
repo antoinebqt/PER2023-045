@@ -1,5 +1,7 @@
 kubectl delete deployment strimzi-cluster-operator
 kubectl delete deployment latency
+kubectl delete deployment my-cluster-entity-operator
+kubectl delete deployment my-cluster-kafka-exporter
 helm repo remove prometheus-community
 helm delete prometheus
 kubectl delete svc assignmentservice
