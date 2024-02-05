@@ -9,4 +9,4 @@ sudo apt install -y docker-ce docker-ce-cli containerd.io
 sudo usermod -aG docker $USER
 
 # WARNING
-printf "\n\033[1;31m## Please reboot your machine to apply changes before requirements2.sh\033[0m\n\n"
+printf "\n\033[1;31m## Please reboot (or disconnect current user of) your machine to apply changes before requirements2.sh\033[0m\n\n"

@@ -1,5 +1,6 @@
 # WARNING
-printf "\n\033[1;31m## Note you had to reboot the system after requirements1.sh\033[0m\n"
+printf "\n\033[1;31m## Note you had to reboot the system (or disconnect/reconnect user) after requirements1.sh\033[0m\n"
+printf "\033[1;31m## For this script to work properly, you must be able to run the docker ps command without being root\033[0m\n"
 sleep 5
 
 # KUBECTL
@@ -11,7 +12,7 @@ sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 printf "\n\033[1;36m## Installing Minikube\033[0m\n"
 curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
 sudo install minikube-linux-amd64 /usr/local/bin/minikube
-minikube start --cpus=6 --memory=6g
+minikube start --cpus=16 --memory=16g
 
 # HELM
 printf "\n\033[1;36m## Installing Helm\033[0m\n"
