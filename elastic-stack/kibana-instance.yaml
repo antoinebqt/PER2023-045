@@ -8,7 +8,8 @@ spec:
   count: 1
   config:
     monitoring.ui.ccs.enabled: false
-    xpack.reporting.queue.timeout: 15000000
+    xpack.reporting.queue.timeout: 10800000
+    xpack.reporting.csv.maxSizeBytes: 209715200
   elasticsearchRef:
     name: elastic-cluster
   podTemplate:
