@@ -8,6 +8,7 @@ spec:
   count: 1
   config:
     monitoring.ui.ccs.enabled: false
+    xpack.reporting.queue.timeout: 15000000
   elasticsearchRef:
     name: elastic-cluster
   podTemplate:
@@ -18,8 +19,6 @@ spec:
         env:
           - name: NODE_OPTIONS
             value: "--max-old-space-size=2048"
-          - name: SERVER_PUBLICBASEURL
-            value: "http://kibana.orch-team-a.pns-projects.fr.eu.org"
         resources:
           requests:
             memory: 1Gi
