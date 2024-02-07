@@ -155,6 +155,6 @@ def plotByPod():
 
 
 if __name__ == '__main__':
-    # readPanda()
-    # getReplicasMinutes()
+    readPanda()
+    getReplicasMinutes()
     plotByPod()

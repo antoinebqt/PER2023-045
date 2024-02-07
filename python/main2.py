@@ -19,7 +19,7 @@ def readPanda():
     plt.rc('font', **font)
 
     ## change this to your csv file.
-    data = pd.read_csv('Latency_logs_3.csv', parse_dates=['@timestamp'], date_parser=lambda x: pd.to_datetime(x, format='%b %d, %Y @ %H:%M:%S.%f'))
+    data = pd.read_csv('latency.csv', parse_dates=['@timestamp'], date_parser=lambda x: pd.to_datetime(x, format='%b %d, %Y @ %H:%M:%S.%f'))
 
     data = data.iloc[::-1].reset_index()
     print(data['message'])
@@ -45,16 +45,16 @@ def readPanda():
     ax.plot(data['time_diff'], data['message'])
 
     # Supprimer l'ancienne image s'il existe
-    if os.path.exists('output/read_panda_plot_2.png'):
-        os.remove('output/read_panda_plot_2.png')
+    if os.path.exists('output/read_panda_plot_3.png'):
+        os.remove('output/read_panda_plot_3.png')
 
     # Enregistrer le plot comme un fichier PNG dans le dossier 'output'
-    plt.savefig('output/read_panda_plot_2.png')
+    plt.savefig('output/read_panda_plot_3.png')
     plt.close()
 
 
 def getReplicasMinutes():
-    data = pd.read_csv('Latency_logs_3.csv', parse_dates=['@timestamp'], date_parser=lambda x: pd.to_datetime(x, format='%b %d, %Y @ %H:%M:%S.%f'))
+    data = pd.read_csv('latency.csv', parse_dates=['@timestamp'], date_parser=lambda x: pd.to_datetime(x, format='%b %d, %Y @ %H:%M:%S.%f'))
 
     u = data['kubernetes.pod.name'].unique()
     print(u)
@@ -75,7 +75,7 @@ def getReplicasMinutes():
         totalseconds += t
 
     # Écriture du résultat dans un fichier texte dans le dossier 'output'
-    with open('output/replicas_minutes_2.txt', 'w') as f:
+    with open('output/replicas_minutes_3.txt', 'w') as f:
         f.write(str(totalseconds / 60))
 
 
@@ -85,7 +85,7 @@ def plotByPod():
             'size': 8}
     plt.rc('font', **font)
 
-    data = pd.read_csv('Latency_logs_3.csv', parse_dates=['@timestamp'], date_parser=lambda x: pd.to_datetime(x, format='%b %d, %Y @ %H:%M:%S.%f'))
+    data = pd.read_csv('latency.csv', parse_dates=['@timestamp'], date_parser=lambda x: pd.to_datetime(x, format='%b %d, %Y @ %H:%M:%S.%f'))
 
     data = data.iloc[::-1].reset_index()
 
@@ -118,11 +118,11 @@ def plotByPod():
         axs[i].set_ylabel("Consumer " + str(i), **font)
 
     # Supprimer l'ancienne image s'il existe
-    if os.path.exists('output/plot_by_pod_2.png'):
-        os.remove('output/plot_by_pod_2.png')
+    if os.path.exists('output/plot_by_pod_3.png'):
+        os.remove('output/plot_by_pod_3.png')
 
     # Enregistrer le plot comme un fichier PNG dans le dossier 'output'
-    plt.savefig('output/plot_by_pod_2.png')
+    plt.savefig('output/plot_by_pod_3.png')
     plt.close()
 
     print("------------------------")
@@ -130,6 +130,6 @@ def plotByPod():
 
 
 if __name__ == '__main__':
-    # readPanda()
-    # getReplicasMinutes()
+    readPanda()
+    getReplicasMinutes()
     plotByPod()
