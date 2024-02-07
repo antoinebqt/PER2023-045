@@ -1,3 +1,11 @@
+# apiVersion: v1
+# kind: Secret
+# metadata:
+#   name: elasticsearch-password
+# type: Opaque
+# data:
+#   password: RlBROHk4YjkwanVWOExhVjg4S0IxMms4
+# ---
 apiVersion: elasticsearch.k8s.elastic.co/v1
 kind: Elasticsearch
 metadata:
@@ -18,11 +26,10 @@ spec:
         - name: elasticsearch
           resources:
             limits:
-              cpu: 2
-              memory: 2.5Gi
+              memory: 4Gi
             requests:
-              cpu: 0.8
-              memory: 2Gi
+              cpu: 4
+              memory: 4Gi
         initContainers:
         - name: sysctl
           securityContext:
