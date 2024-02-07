@@ -256,6 +256,9 @@ spec:
       - name: varlog
         hostPath:
           path: /var/log
+      - name: elastic-credentials
+        secret:
+          secretName: elastic-cluster-es-elastic-user
       # data folder stores a registry of read status for all files, so we don't send everything again on a Filebeat pod restart
       - name: data
         hostPath:
