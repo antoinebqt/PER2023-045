@@ -12,14 +12,13 @@ if not os.path.exists('output'):
     os.makedirs('output')
 
 def readPanda():
-    # data = pd.read_csv('reb82.txt')
     font = {'family': 'verdana',
             'weight': 'bold',
             'size': 8}
     plt.rc('font', **font)
 
     ## change this to your csv file.
-    data = pd.read_csv('latency.csv', parse_dates=['@timestamp'], date_parser=lambda x: pd.to_datetime(x, format='%b %d, %Y @ %H:%M:%S.%f'))
+    data = pd.read_csv('input/latency.csv', parse_dates=['@timestamp'], date_parser=lambda x: pd.to_datetime(x, format='%b %d, %Y @ %H:%M:%S.%f'))
 
     data = data.iloc[::-1].reset_index()
     print(data['message'])
@@ -54,7 +53,7 @@ def readPanda():
 
 
 def getReplicasMinutes():
-    data = pd.read_csv('latency.csv', parse_dates=['@timestamp'], date_parser=lambda x: pd.to_datetime(x, format='%b %d, %Y @ %H:%M:%S.%f'))
+    data = pd.read_csv('input/latency.csv', parse_dates=['@timestamp'], date_parser=lambda x: pd.to_datetime(x, format='%b %d, %Y @ %H:%M:%S.%f'))
 
     u = data['kubernetes.pod.name'].unique()
     print(u)
@@ -85,7 +84,7 @@ def plotByPod():
             'size': 8}
     plt.rc('font', **font)
 
-    data = pd.read_csv('latency.csv', parse_dates=['@timestamp'], date_parser=lambda x: pd.to_datetime(x, format='%b %d, %Y @ %H:%M:%S.%f'))
+    data = pd.read_csv('input/latency.csv', parse_dates=['@timestamp'], date_parser=lambda x: pd.to_datetime(x, format='%b %d, %Y @ %H:%M:%S.%f'))
 
     data = data.iloc[::-1].reset_index()
 
