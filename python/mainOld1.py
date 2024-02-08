@@ -19,7 +19,7 @@ def readPanda():
     plt.rc('font', **font)
 
     ## change this to your csv file.
-    data = pd.read_csv('94h.txt', parse_dates=False)
+    data = pd.read_csv('input/94h.txt', parse_dates=False)
 
     data = data.iloc[::-1].reset_index()
     print(data[' text_payload'])
@@ -60,7 +60,7 @@ def readPanda():
 
 
 def getReplicasMinutes():
-    data = pd.read_csv('94h.txt')
+    data = pd.read_csv('input/94h.txt')
     data['timestamp'] = pd.to_datetime(data['timestamp'])
 
     # data = pd.read_csv('taxi/taxireb2s.txt')
@@ -100,7 +100,7 @@ def plotByPod():
             'size': 8}
     plt.rc('font', **font)
 
-    data = pd.read_csv('94h.txt')
+    data = pd.read_csv('input/94h.txt')
 
     data = data.iloc[::-1].reset_index()
 
