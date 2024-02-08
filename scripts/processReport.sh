@@ -2,8 +2,8 @@
 #sleep 600
 
 # Start port forwarding
-kubectl port-forward svc/kibana-kb-http 15601:5601 -n elastic
-& forward_pid=$!
+kubectl port-forward svc/kibana-kb-http 15601:5601 -n elastic &
+forward_pid=$!
 
 # Function to stop port forwarding
 stop_port_forwarding() {
