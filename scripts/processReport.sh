@@ -1,6 +1,15 @@
 # Sleep for 10 minutes
 #sleep 600
 
+# Start port forwarding
+kubectl port-forward svc/kibana-kb-http 15601:5601 -n elastic
+& forward_pid=$!
+
+# Function to stop port forwarding
+stop_port_forwarding() {
+    kill $forward_pid
+}
+
 # Start and get report
 ELASTIC_PASSWORD = $(kubectl get secret elastic-cluster-es-elastic-user -o go-template='{{.data.elastic | base64decode}}' -n elastic)
 
@@ -26,3 +35,6 @@ while true; do
     # Sleep for 2 seconds
     sleep 2
 done
+
+# Stop port forwarding
+stop_port_forwarding
