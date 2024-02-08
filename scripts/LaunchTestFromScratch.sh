@@ -1,0 +1,2 @@
+./deployAll.sh
+./verifyOnePodLatency.sh

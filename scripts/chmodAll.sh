@@ -6,3 +6,4 @@ chmod +x scripts/uninstall.sh
 chmod +x scripts/deployApp.sh
 chmod +x scripts/deployKafka.sh
 chmod +x scripts/deployPrometheus.sh
+chmod +x scripts/LaunchTestFromScratch.sh
