@@ -3,15 +3,20 @@
   hosts: localhost
 
   tasks:
-    - name: Add the Prometheus Chart Repository
-      kubernetes.core.helm_repository:
-        name: prometheus-community
-        repo_url: "https://prometheus-community.github.io/helm-charts"
+    - name: Apply Prometheus Operator Deployment
+      command: kubectl apply -f prometheus-operator-deployment.yaml
 
-    - name: Apply Prometheus and Grafana
-      kubernetes.core.helm:
-        name: prometheus
-        chart_ref: prometheus-community/kube-prometheus-stack
-        release_namespace: default
-        values_files:
-          - ../kubernetes/prometheus-values.yaml
+    - name: Apply Prometheus Additional Configuration
+      command: kubectl apply -f prometheus-additional.yaml
+
+    - name: Apply Prometheus Rules
+      command: kubectl apply -f prometheus-rules.yaml
+
+    - name: Apply Strimzi Pod Monitor
+      command: kubectl apply -f strimzi-pod-monitor.yaml
+
+    - name: Apply Prometheus Configuration
+      command: kubectl apply -f prometheus.yaml
+
+    - name: Apply Grafana Configuration
+      command: kubectl apply -f grafana.yaml
