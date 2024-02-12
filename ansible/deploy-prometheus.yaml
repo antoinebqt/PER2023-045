@@ -1,34 +1,21 @@
 ---
-- name: Deploy Prometheus and Grafana
+- name: Deploy Prometheus, Grafana, and related resources
   hosts: localhost
-
   tasks:
     - name: Apply Prometheus Operator Deployment
-      kubernetes.core.k8s:
-        state: present
-        src: ../kubernetes/prometheus-operator-deployment.yaml
+      command: kubectl apply -f ../kubernetes/prometheus-operator-deployment.yaml
 
     - name: Apply Prometheus Additional Configuration
-      kubernetes.core.k8s:
-        state: present
-        src: ../kubernetes/prometheus-additional.yaml
+      command: kubectl apply -f ../kubernetes/prometheus-additional.yaml
 
     - name: Apply Prometheus Rules
-      kubernetes.core.k8s:
-        state: present
-        src: ../kubernetes/prometheus-rules.yaml
+      command: kubectl apply -f ../kubernetes/prometheus-rules.yaml
 
     - name: Apply Strimzi Pod Monitor
-      kubernetes.core.k8s:
-        state: present
-        src: ../kubernetes/strimzi-pod-monitor.yaml
+      command: kubectl apply -f ../kubernetes/strimzi-pod-monitor.yaml
 
     - name: Apply Prometheus Configuration
-      kubernetes.core.k8s:
-        state: present
-        src: ../kubernetes/prometheus.yaml
+      command: kubectl apply -f ../kubernetes/prometheus.yaml
 
     - name: Apply Grafana Configuration
-      kubernetes.core.k8s:
-        state: present
-        src: ../kubernetes/grafana.yaml
+      command: kubectl apply -f ../kubernetes/grafana.yaml
