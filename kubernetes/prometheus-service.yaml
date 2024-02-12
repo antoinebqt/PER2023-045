@@ -4,7 +4,7 @@ metadata:
   name: prometheus-service
 spec:
   selector:
-    app: prometheus
+    app.kubernetes.io/name: prometheus
   ports:
     - protocol: TCP
       port: 9090
