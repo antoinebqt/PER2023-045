@@ -4,19 +4,31 @@
 
   tasks:
     - name: Apply Prometheus Operator Deployment
-      command: kubectl apply -f prometheus-operator-deployment.yaml
+      kubernetes.core.k8s:
+          state: present
+          src: ../kubernetes/prometheus-operator-deployment.yaml
 
     - name: Apply Prometheus Additional Configuration
-      command: kubectl apply -f prometheus-additional.yaml
+      kubernetes.core.k8s:
+          state: present
+          src: ../kubernetes/prometheus-additional.yaml
 
     - name: Apply Prometheus Rules
-      command: kubectl apply -f prometheus-rules.yaml
+      kubernetes.core.k8s:
+          state: present
+          src: ../kubernetes/prometheus-rules.yaml
 
     - name: Apply Strimzi Pod Monitor
-      command: kubectl apply -f strimzi-pod-monitor.yaml
+      kubernetes.core.k8s:
+          state: present
+          src: ../kubernetes/strimzi-pod-monitor.yaml
 
     - name: Apply Prometheus Configuration
-      command: kubectl apply -f prometheus.yaml
+      kubernetes.core.k8s:
+          state: present
+          src: ../kubernetes/prometheus.yaml
 
     - name: Apply Grafana Configuration
-      command: kubectl apply -f grafana.yaml
+      kubernetes.core.k8s:
+          state: present
+          src: ../kubernetes/grafana.yaml
