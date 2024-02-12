@@ -5,30 +5,30 @@
   tasks:
     - name: Apply Prometheus Operator Deployment
       kubernetes.core.k8s:
-          state: present
-          src: ../kubernetes/prometheus-operator-deployment.yaml
+        state: present
+        src: ../kubernetes/prometheus-operator-deployment.yaml
 
     - name: Apply Prometheus Additional Configuration
       kubernetes.core.k8s:
-          state: present
-          src: ../kubernetes/prometheus-additional.yaml
+        state: present
+        src: ../kubernetes/prometheus-additional.yaml
 
     - name: Apply Prometheus Rules
       kubernetes.core.k8s:
-          state: present
-          src: ../kubernetes/prometheus-rules.yaml
+        state: present
+        src: ../kubernetes/prometheus-rules.yaml
 
     - name: Apply Strimzi Pod Monitor
       kubernetes.core.k8s:
-          state: present
-          src: ../kubernetes/strimzi-pod-monitor.yaml
+        state: present
+        src: ../kubernetes/strimzi-pod-monitor.yaml
 
     - name: Apply Prometheus Configuration
       kubernetes.core.k8s:
-          state: present
-          src: ../kubernetes/prometheus.yaml
+        state: present
+        src: ../kubernetes/prometheus.yaml
 
     - name: Apply Grafana Configuration
       kubernetes.core.k8s:
-          state: present
-          src: ../kubernetes/grafana.yaml
+        state: present
+        src: ../kubernetes/grafana.yaml
