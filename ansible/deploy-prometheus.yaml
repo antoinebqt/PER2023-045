@@ -3,22 +3,22 @@
   hosts: localhost
   tasks:
     - name: Apply Prometheus Operator Deployment
-      command: kubectl apply -f ../kubernetes/prometheus-operator-deployment.yaml
+      command: kubectl create -f ../kubernetes/prometheus-operator-deployment.yaml
 
     - name: Apply Prometheus Additional Configuration
-      command: kubectl apply -f ../kubernetes/prometheus-additional.yaml
+      command: kubectl create -f ../kubernetes/prometheus-additional.yaml
 
     - name: Apply Prometheus Rules
-      command: kubectl apply -f ../kubernetes/prometheus-rules.yaml
+      command: kubectl create -f ../kubernetes/prometheus-rules.yaml
 
     - name: Apply Strimzi Pod Monitor
-      command: kubectl apply -f ../kubernetes/strimzi-pod-monitor.yaml
+      command: kubectl create -f ../kubernetes/strimzi-pod-monitor.yaml
 
     - name: Apply Prometheus Configuration
-      command: kubectl apply -f ../kubernetes/prometheus.yaml
+      command: kubectl create -f ../kubernetes/prometheus.yaml
 
     - name: Apply Grafana Configuration
-      command: kubectl apply -f ../kubernetes/grafana.yaml
+      command: kubectl create -f ../kubernetes/grafana.yaml
 
     - name: Apply Prometheus Service
-      command: kubectl apply -f ../kubernetes/prometheus-service.yaml
+      command: kubectl create -f ../kubernetes/prometheus-service.yaml
