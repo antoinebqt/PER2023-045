@@ -9,11 +9,12 @@ stop_port_forwarding() {
     kill $forward_pid
 }
 
+sleep 1
+
 echo "start curl"
 
 output_file="result.csv"
 curl --insecure \
- -L \
  -H "Authorization: Basic $(echo -n "elastic:FPQ8y8b90juV8LaV88KB12k8" | base64)" \
  -H "kbn-xsrf: reporting" \
  -X POST \
