@@ -17,7 +17,7 @@ printf "\n\033[1;36m## Uninstalling Minikube\033[0m\n"
 minikube stop
 minikube delete
 sudo rm /usr/local/bin/minikube
-docker image prune -a
+docker image prune -af
 
 # HELM
 printf "\n\033[1;36m## Uninstalling Helm\033[0m\n"
