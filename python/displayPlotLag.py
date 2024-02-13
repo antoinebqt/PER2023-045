@@ -11,7 +11,7 @@ import os
 if not os.path.exists('output'):
     os.makedirs('output')
 
-def readPanda():
+def displayLag():
     # data = pd.read_csv('reb82.txt')
     font = {'family': 'verdana',
             'weight': 'bold',
@@ -19,7 +19,7 @@ def readPanda():
     plt.rc('font', **font)
 
     ## change this to your csv file.
-    data = pd.read_csv('Lag.csv', parse_dates=['@timestamp'], date_parser=lambda x: pd.to_datetime(x, format='%b %d, %Y @ %H:%M:%S.%f'))
+    data = pd.read_csv('input/Lag.csv', parse_dates=['@timestamp'], date_parser=lambda x: pd.to_datetime(x, format='%b %d, %Y @ %H:%M:%S.%f'))
 
     data = data.iloc[::-1].reset_index()
     print(data['message'])
@@ -45,13 +45,13 @@ def readPanda():
     ax.plot(data['time_diff'], data['message'])
 
     # Supprimer l'ancienne image s'il existe
-    if os.path.exists('output/read_panda_plot_lag.png'):
-        os.remove('output/read_panda_plot_lag.png')
+    if os.path.exists('output/2_plot_lag.png'):
+        os.remove('output/2_plot_lag.png')
 
     # Enregistrer le plot comme un fichier PNG dans le dossier 'output'
-    plt.savefig('output/read_panda_plot_lag.png')
+    plt.savefig('output/2_plot_lag.png')
     plt.close()
 
 
 if __name__ == '__main__':
-    readPanda()
+    displayLag()

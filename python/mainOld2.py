@@ -44,11 +44,11 @@ def readPanda():
     ax.plot(data['time_diff'], data['message'])
 
     # Supprimer l'ancienne image s'il existe
-    if os.path.exists('output/read_panda_plot_3.png'):
-        os.remove('output/read_panda_plot_3.png')
+    if os.path.exists('output/r2_ead_panda_plot.png'):
+        os.remove('output/2_read_panda_plot.png')
 
     # Enregistrer le plot comme un fichier PNG dans le dossier 'output'
-    plt.savefig('output/read_panda_plot_3.png')
+    plt.savefig('output/2_read_panda_plot.png')
     plt.close()
 
 
@@ -74,7 +74,7 @@ def getReplicasMinutes():
         totalseconds += t
 
     # Écriture du résultat dans un fichier texte dans le dossier 'output'
-    with open('output/replicas_minutes_3.txt', 'w') as f:
+    with open('output/2_replicas_minutes.txt', 'w') as f:
         f.write(str(totalseconds / 60))
 
 
@@ -117,11 +117,11 @@ def plotByPod():
         axs[i].set_ylabel("Consumer " + str(i), **font)
 
     # Supprimer l'ancienne image s'il existe
-    if os.path.exists('output/plot_by_pod_3.png'):
-        os.remove('output/plot_by_pod_3.png')
+    if os.path.exists('output/2_plot_by_pod.png'):
+        os.remove('output/2_plot_by_pod.png')
 
     # Enregistrer le plot comme un fichier PNG dans le dossier 'output'
-    plt.savefig('output/plot_by_pod_3.png')
+    plt.savefig('output/2_plot_by_pod.png')
     plt.close()
 
     print("------------------------")
