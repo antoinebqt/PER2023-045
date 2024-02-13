@@ -9,3 +9,4 @@ chmod +x scripts/deployPrometheus.sh
 chmod +x scripts/LaunchTestFromScratch.sh
 chmod +x scripts/verifyIfOnePodLatency.sh
 chmod +x scripts/cleanPrometheus.sh
+chmod +x scripts/cleanElastic.sh

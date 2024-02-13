@@ -15,14 +15,14 @@
    - name: Creat elastic namespace
      command: kubectl create namespace elastic
 
-    - name: Apply Elastic Priority Classes
-      command: kubectl apply -f ../elastic-stack/elastic-priority-classes.yaml
+   - name: Apply Elastic Priority Classes
+     command: kubectl apply -f ../elastic-stack/elastic-priority-classes.yaml
 
-    - name: Apply Elasticksearch cluster
-      command: kubectl apply -f ../elastic-stack/elasticsearch-cluster.yaml
+   - name: Apply Elasticksearch cluster
+     command: kubectl apply -f ../elastic-stack/elasticsearch-cluster.yaml
      
-    - name: Apply Kibana instance
-      command: kubectl apply -f ../elastic-stack/kibana-instance.yaml
+   - name: Apply Kibana instance
+     command: kubectl apply -f ../elastic-stack/kibana-instance.yaml
 
-    - name: Apply Filebeat
-      command: kubectl apply -f ../elastic-stack/filebeat-kubernetes.yaml
+   - name: Apply Filebeat
+     command: kubectl apply -f ../elastic-stack/filebeat-kubernetes.yaml
