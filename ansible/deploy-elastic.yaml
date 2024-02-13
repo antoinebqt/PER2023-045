@@ -3,17 +3,17 @@
   hosts: localhost
 
   tasks:
-#    - name: Add helm elastic repo
-#      command: helm repo add elastic https://helm.elastic.co
-#
-#    - name: Update helm repo
-#      command: helm repo update
-#
-#    - name: Install elastic operator
-#      command: helm install elastic-operator elastic/eck-operator -n elastic-system --create-namespace
-#
-#    - name: Creat elastic namespace
-#      command: kubectl create namespace elastic
+   - name: Add helm elastic repo
+     command: helm repo add elastic https://helm.elastic.co
+
+   - name: Update helm repo
+     command: helm repo update
+
+   - name: Install elastic operator
+     command: helm install elastic-operator elastic/eck-operator -n elastic-system --create-namespace
+
+   - name: Creat elastic namespace
+     command: kubectl create namespace elastic
 
     - name: Apply Elastic Priority Classes
       command: kubectl apply -f ../elastic-stack/elastic-priority-classes.yaml
@@ -26,10 +26,3 @@
 
     - name: Apply Filebeat
       command: kubectl apply -f ../elastic-stack/filebeat-kubernetes.yaml
-      
-    - name: Get password before command kubectl apply -f filebeat-kubernetes.yaml
-      shell: "kubectl get secret elastic-cluster-es-elastic-user -o go-template='{{.data.elastic | base64decode}}' -n elastic"
-      register: password_output
-
-    - debug:
-      var: password_output.stdout

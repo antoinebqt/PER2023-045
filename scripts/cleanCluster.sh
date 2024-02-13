@@ -20,3 +20,4 @@ kubectl delete pod my-cluster-zookeeper-2
 kubectl delete pod workload
 
 ./cleanPrometheus.sh
+./cleanElastic.sh
