@@ -3,6 +3,9 @@
   hosts: localhost
 
   tasks:
+    - name: Creat elastic namespace
+      command: kubectl create namespace elastic
+
     - name: Apply Elastic Priority Classes
       command: kubectl apply -f ../elastic-stack/elastic-priority-classes.yaml
 
