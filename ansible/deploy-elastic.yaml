@@ -3,6 +3,15 @@
   hosts: localhost
 
   tasks:
+    - name: Add helm elastic repo
+    command: helm repo add elastic https://helm.elastic.co
+
+    - name: Update helm repo
+      command: helm repo update
+
+    - name: Install elastic operator
+      command: helm install elastic-operator elastic/eck-operator -n elastic-system --create-namespace
+
     - name: Creat elastic namespace
       command: kubectl create namespace elastic
 
