@@ -4,7 +4,7 @@
 
   tasks:
     - name: Add helm elastic repo
-    command: helm repo add elastic https://helm.elastic.co
+      command: helm repo add elastic https://helm.elastic.co
 
     - name: Update helm repo
       command: helm repo update
