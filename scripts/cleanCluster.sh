@@ -18,3 +18,5 @@ kubectl delete pod my-cluster-zookeeper-0
 kubectl delete pod my-cluster-zookeeper-1
 kubectl delete pod my-cluster-zookeeper-2
 kubectl delete pod workload
+
+./cleanPrometheus.sh
