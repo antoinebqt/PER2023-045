@@ -28,5 +28,5 @@
       command: kubectl apply -f ../elastic-stack/filebeat-kubernetes.yaml
       
     - name: Get password before command kubectl apply -f filebeat-kubernetes.yaml
-      command: kubectl get secret elastic-cluster-es-elastic-user -o go-template='{{.data.elastic | base64decode}}' -n elastic
+      command: "kubectl get secret elastic-cluster-es-elastic-user -o go-template='{{.data.elastic | base64decode}}' -n elastic"
 
