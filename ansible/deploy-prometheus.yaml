@@ -3,7 +3,7 @@
   hosts: localhost
   tasks:
     - name: Apply Prometheus Operator Deployment
-      command: kubectl apply -f ../kubernetes/prometheus-operator-deployment.yaml
+      command: kubectl create -f ../kubernetes/prometheus-operator-deployment.yaml
 
     - name: Apply Prometheus Additional Configuration
       command: kubectl apply -f ../kubernetes/prometheus-additional.yaml

@@ -40,7 +40,7 @@ while true; do
     curl --insecure -H "Authorization: Basic $(echo -n "elastic:FPQ8y8b90juV8LaV88KB12k8" | base64)" "https://localhost:15601$url" -o "$output_file"
     
     # Verify if the response is different from "processing"
-    if grep -q -v "processing" "$output_file"; then
+    if grep -q -v -e "pending" -e "processing" "$output_file"; then
         echo "Réponse obtenue et enregistrée dans $output_file"
         break
     else
