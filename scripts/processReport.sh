@@ -32,19 +32,19 @@ echo "Post response : $reponse_post"
 url=$(echo "$response_post" | jq -r '.path')
 echo "Path to get report : $url"
 
-output_file="python/output/result.csv"
+logs_file="python/input/result.csv"
 
 # Loop until the response is different from "wait"
 while true; do
     # Execute GET request to get the report
-    curl --insecure -H "Authorization: Basic $(echo -n "elastic:$ELASTIC_PASSWORD" | base64)" "https://localhost:15601$url" -o "$output_file"
+    curl --insecure -H "Authorization: Basic $(echo -n "elastic:$ELASTIC_PASSWORD" | base64)" "https://localhost:15601$url" -o "$logs_file"
     
     # Verify if the response is different from "processing"
-    if grep -q -v -e "pending" -e "processing" "$output_file"; then
-        echo "Réponse obtenue et enregistrée dans $output_file"
+    if grep -q -v -e "pending" -e "processing" "$logs_file"; then
+        echo "Logs saved in $logs_file"
         break
     else
-	    echo "Still process : $(cat $output_file)"
+	    echo "Still process : $(cat $logs_file)"
     fi
     
     # Sleep for 2 seconds
@@ -53,3 +53,10 @@ done
 
 # Stop port forwarding
 stop_port_forwarding
+
+# Execute the python script
+python3 python/main.py
+python3 python/cdf.py
+python3 python/displayPlotLag.py
+
+printf "\n\033[1;36m## Results are available in the python/output folder\033[0m\n"
