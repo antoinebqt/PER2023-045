@@ -1,0 +1,73 @@
+---
+- name: Déploiement de K3s Cluster
+  hosts: master-node
+  become: true
+  tasks:
+    # - name: Set hostname
+    #   hostname:
+    #     name: k3s-master
+
+    - name: Mise à jour du système
+      apt:
+        update_cache: yes
+        upgrade: dist
+
+    - name: Installation de Curl
+      apt:
+        name: curl
+        state: present
+
+    - name: Téléchargement du script d'installation de K3s
+      shell: curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="--disable servicelb --flannel-backend=wireguard-native --disable traefik --node-ip {{ ansible_host }} --cluster-cidr 10.42.0.0/16 --service-cidr 10.43.0.0/16" sh -
+
+    # - name: Récupération du token d'accès pour rejoindre le cluster
+    #   shell: cat /var/lib/rancher/k3s/server/node-token
+    #   register: join_token
+
+    # - name: fetch the server token
+    #   fetch:
+    #     src: /var/lib/rancher/k3s/server/node-token
+    #     dest: "{{ ansible_env.HOME }}/node-token"
+    #     flat: yes
+
+    # - name: Display all variables/facts known for a host
+    #   debug:
+    #     var: hostvars[join_token]
+    #   tags: debug_info
+
+- hosts: master-node
+  become: yes
+  tasks:
+    - name: Read content of the file
+      slurp:
+        src: /var/lib/rancher/k3s/server/node-token
+      register: file_content
+
+    - name: Extract value from file content
+      set_fact:
+        value_from_file: "{{ file_content.content | b64decode | regex_replace('\n', '') }}"
+
+    - name: Use the value later in the script
+      debug:
+        msg: "The value from the file is {{ value_from_file }}"
+
+- name: Ajout des noeuds au groupe d'inventaire "k3s_nodes"
+  hosts: worker-nodes
+  # connection: local
+  become: true
+  tasks:
+    - name: Mise à jour du système
+      apt:
+        update_cache: yes
+        upgrade: dist
+
+    - name: Installation de Curl
+      apt:
+        name: curl
+        state: present
+
+    - debug: 
+        var: hostvars[groups['master-node'][0]]['value_from_file']
+
+    - name: Téléchargement du script d'installation des nodes
+      shell: curl -sfL https://get.k3s.io | K3S_URL=https://{{ hostvars[groups['master-node'][0]]['ansible_default_ipv4']['address'] }}:6443 K3S_TOKEN={{ hostvars[groups['master-node'][0]]['value_from_file'] }} sh -
