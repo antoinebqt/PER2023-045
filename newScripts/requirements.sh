@@ -20,6 +20,6 @@ curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scrip
 chmod 700 get_helm.sh
 ./get_helm.sh
 
-# ANSIBLE
+# SSHPASS
 printf "\n\033[1;36m## Installing sshpass\033[0m\n"
 sudo apt install -y sshpass
