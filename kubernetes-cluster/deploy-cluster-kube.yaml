@@ -20,21 +20,6 @@
     - name: Téléchargement du script d'installation de K3s
       shell: curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="--disable servicelb --flannel-backend=wireguard-native --disable traefik --node-ip {{ ansible_host }} --cluster-cidr 10.42.0.0/16 --service-cidr 10.43.0.0/16" sh -
 
-    # - name: Récupération du token d'accès pour rejoindre le cluster
-    #   shell: cat /var/lib/rancher/k3s/server/node-token
-    #   register: join_token
-
-    # - name: fetch the server token
-    #   fetch:
-    #     src: /var/lib/rancher/k3s/server/node-token
-    #     dest: "{{ ansible_env.HOME }}/node-token"
-    #     flat: yes
-
-    # - name: Display all variables/facts known for a host
-    #   debug:
-    #     var: hostvars[join_token]
-    #   tags: debug_info
-
 - hosts: master-node
   become: yes
   tasks:
@@ -53,7 +38,6 @@
 
 - name: Ajout des noeuds au groupe d'inventaire "k3s_nodes"
   hosts: worker-nodes
-  # connection: local
   become: true
   tasks:
     - name: Mise à jour du système
