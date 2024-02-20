@@ -17,7 +17,7 @@ ELASTIC_PASSWORD=$(kubectl get secret elastic-cluster-es-elastic-user -o go-temp
 echo "Get password : $ELASTIC_PASSWORD"
 
 # Create data view
-echo "Create or replace data view : Application view"
+echo "Create or replace data view : Cluster logs"
 curl --insecure \
 -X POST 'https://localhost:15601/api/data_views/data_view' \
 --header 'kbn-xsrf: creating' \
@@ -27,7 +27,7 @@ curl --insecure \
   "override": true,
   "data_view": {
      "title": "f*",
-     "name": "Application view",
+     "name": "Cluster logs",
      "id": "latency-id",
      "timeFieldName": "@timestamp"
   }
