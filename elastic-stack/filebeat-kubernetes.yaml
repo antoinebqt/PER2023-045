@@ -209,11 +209,11 @@ spec:
         - name: ELASTICSEARCH_USERNAME
           value: elastic
         - name: ELASTICSEARCH_PASSWORD
-          value: FPQ8y8b90juV8LaV88KB12k8
-          # valueFrom:
-          #   secretKeyRef:
-          #     name: elastic-cluster-es-elastic-user
-          #     key: elastic
+          #value: FPQ8y8b90juV8LaV88KB12k8
+          valueFrom:
+            secretKeyRef:
+              name: elastic-cluster-es-elastic-user
+              key: elastic
         - name: ELASTIC_CLOUD_ID
           value:
         - name: ELASTIC_CLOUD_AUTH
