@@ -1,1 +1,1 @@
-ansible-playbook ansible/deploy-app.yaml
+ansible-playbook ansible/deploy-elastic.yaml
