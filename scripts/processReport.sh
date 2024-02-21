@@ -72,8 +72,10 @@ done
 stop_port_forwarding
 
 # Execute the python script
+printf "\n\033[1;36m## Executing main.py\033[0m\n"
 python3 python/main.py
+printf "\n\033[1;36m## Executing cdf.py\033[0m\n"
 python3 python/cdf.py
-python3 python/displayPlotLag.py
+# python3 python/displayPlotLag.py
 
 printf "\n\033[1;36m## Results are available in the python/output folder\033[0m\n"
