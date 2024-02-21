@@ -17,7 +17,7 @@ def plotCDF():
             'size': 10}
     plt.rc('font', **font)
 
-    data = pd.read_csv('input/result.csv', parse_dates=['@timestamp'], date_parser=lambda x: pd.to_datetime(x, format='%b %d, %Y @ %H:%M:%S.%f'))
+    data = pd.read_csv('python/input/result.csv', parse_dates=['@timestamp'], date_parser=lambda x: pd.to_datetime(x, format='%b %d, %Y @ %H:%M:%S.%f'))
     data = data.iloc[::-1].reset_index()
     data['message'] = data['message'].str.extract('latency is (\\d+)')
     data['message'] = data['message'].astype(float)
@@ -32,11 +32,11 @@ def plotCDF():
     plt.legend(["Heartbeat = 3s", "heartbeat=500ms"])
 
     # Supprimer l'ancienne image s'il existe
-    if os.path.exists('output/result_cdf.png'):
-        os.remove('output/result_cdf.png')
+    if os.path.exists('python/output/result_cdf.png'):
+        os.remove('python/output/result_cdf.png')
 
     # Enregistrer le plot comme un fichier PNG dans le dossier 'output'
-    plt.savefig('output/result_cdf.png')
+    plt.savefig('python/output/result_cdf.png')
     plt.close()
 
 
