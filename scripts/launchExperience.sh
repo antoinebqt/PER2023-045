@@ -1,5 +1,18 @@
-# Sleep for 10 minutes
-#sleep 600
+ansible-playbook ansible/deploy-app.yaml
+
+printf "\n\033[1;36m## Waiting 5 minutes for the end of the experience\033[0m\n"
+sleep 300
+
+while true; do
+    desired_replicas=$(kubectl get deployment latency -o=jsonpath='{.spec.replicas}')
+    if [ "$desired_replicas" -ge 2 ]; then
+        echo "Experience not yet finished, retrying in 1min"
+        sleep 60 # Adjust the interval as needed
+    else
+        echo "Experience finished"
+        break
+    fi
+done
 
 # Start port forwarding
 kubectl port-forward svc/kibana-kb-http 15601:5601 -n elastic &

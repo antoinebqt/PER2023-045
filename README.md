@@ -41,16 +41,16 @@ chmod +x scripts/chmodAll.sh && scripts/chmodAll.sh
 ```
 - Install Docker
 ```bash
-scripts/requirements1.sh
+scripts/mnk-requirements1.sh
 ```
 - Once the previous script is done, **exit** the machine and **reconnect** to it in order to update the Docker users group, thus avoiding using the `sudo su` command everytime
 - Install Kubectl, Minikube, Helm, Python packages and Ansible
 ```bash
-scripts/requirements2.sh
+scripts/mnk-requirements2.sh
 ```
 - **Deploy** all the ressources
 ```bash
-scripts/deployAll.sh
+scripts/deployEnv.sh
 ```
 
 ---
