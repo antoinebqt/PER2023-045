@@ -12,19 +12,8 @@
       command: kubectl apply -f ../kubernetes/kafka-topic.yaml
 
     - name: Wait for Kafka pods to be ready
-      ansible.builtin.wait_for:
-        timeout: 300
-        host: "{{ item }}"
-        port: 80
-        state: started
-        search_regex: "1/1"
-      loop:
-        - my-cluster-kafka-0
-        - my-cluster-kafka-1
-        - my-cluster-kafka-2
-        - my-cluster-zookeeper-0
-        - my-cluster-zookeeper-1
-        - my-cluster-zookeeper-2
+      pause:
+        minutes: 2
 
 
 - name: Deploy Prometheus, Grafana, and related resources
