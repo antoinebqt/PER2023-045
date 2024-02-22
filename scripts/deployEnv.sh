@@ -1,1 +1,1 @@
-ansible-playbook ansible/deploy-env.yaml
+ansible-playbook newAnsible/deploy-env.yaml
