@@ -26,7 +26,7 @@
         - my-cluster-zookeeper-1
         - my-cluster-zookeeper-2
 
----
+
 - name: Deploy Prometheus, Grafana, and related resources
   hosts: localhost
 
@@ -52,7 +52,7 @@
     - name: Apply Prometheus Service
       command: kubectl apply -f ../kubernetes/prometheus-service.yaml
 
----
+
 - name: Deploy Elastic Stack
   hosts: localhost
 
