@@ -8,6 +8,7 @@ fi
 
 minutes=$1
 
+kubectl delete -f ../kubernetes/deployment.yml
 ansible-playbook newAnsible/deploy-app.yaml
 
 printf "\n\033[1;36m## Waiting 5 minutes for the end of the experience\033[0m\n"
