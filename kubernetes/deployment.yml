@@ -38,7 +38,7 @@ metadata:
     namespace: default
 spec:
   serviceAccountName: admin-service-account
-  restartPolicy: Never
+  restartPolicy: Always
   containers:
     - name: controllerandscaler
       #image: docker.io/mezzeddine/graphtest:v7
