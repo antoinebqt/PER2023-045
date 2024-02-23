@@ -6,7 +6,7 @@ sleep 300
 while true; do
     desired_replicas=$(kubectl get deployment latency -o=jsonpath='{.spec.replicas}')
     if [ "$desired_replicas" -ge 2 ]; then
-        echo "Experience not yet finished, retrying in 1min"
+        echo "Experience not yet finished, retrying in 1 min"
         sleep 60 # Adjust the interval as needed
     else
         echo "Experience finished"
@@ -67,18 +67,18 @@ logs_file="python/input/result.csv"
 # Loop until the response is different from "wait"
 while true; do
     # Execute GET request to get the report
-    curl --insecure -H "Authorization: Basic $(echo -n "elastic:$ELASTIC_PASSWORD" | base64)" "https://localhost:15601$url" -o "$logs_file"
+    curl --insecure -H "Authorization: Basic $(echo -n "elastic:$ELASTIC_PASSWORD" | base64)" "https://localhost:15601$url" -o "$logs_file" -s
     
     # Verify if the response is different from "processing"
     if grep -q -v -e "pending" -e "processing" "$logs_file"; then
         echo "Logs saved in $logs_file"
         break
     else
-	    echo "Still process : $(cat $logs_file)"
+	    echo "Still processing, retrying in 1 min"
     fi
     
     # Sleep for 2 seconds
-    sleep 2
+    sleep 60
 done
 
 # Stop port forwarding
