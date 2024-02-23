@@ -70,7 +70,7 @@ response_post=$(
  -H "Authorization: Basic $(echo -n "elastic:$ELASTIC_PASSWORD" | base64)" \
  -H "kbn-xsrf: reporting" \
  -X POST \
- $fullUrl
+ $fullUrl \
 )
 
 echo "Post response : $reponse_post"
