@@ -2,7 +2,7 @@
 
 # Check if the user has provided an argument
 if [ $# -eq 0 ]; then
-  echo "Please provide the number of log minutes to be retrieved."
+  echo "Please provide the number of log minutes to be retrieved. Example: scripts/launchExperience.sh 20"
   exit 1
 fi
 
