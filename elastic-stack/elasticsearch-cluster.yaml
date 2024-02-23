@@ -26,10 +26,10 @@ spec:
         - name: elasticsearch
           resources:
             limits:
-              memory: 4Gi
+              memory: 3Gi
             requests:
-              cpu: 4
-              memory: 4Gi
+              cpu: 3
+              memory: 3Gi
         initContainers:
         - name: sysctl
           securityContext:
