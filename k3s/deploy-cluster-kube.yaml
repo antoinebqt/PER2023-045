@@ -9,10 +9,6 @@
   hosts: master-node
   become: true
   tasks:
-    # - name: Set hostname
-    #   hostname:
-    #     name: k3s-master
-
     - name: Mise à jour du système
       apt:
         update_cache: yes
@@ -67,3 +63,41 @@
   tasks:
     - name: Unset ANSIBLE_HOST_KEY_CHECKING
       shell: unset ANSIBLE_HOST_KEY_CHECKING
+
+- name: Déploiement des requirments
+  hosts: master-node
+  become: true
+  tasks:
+    - name: Installing Python packages
+      apt:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - python3-pip
+        - python3-kubernetes
+        - python3-pandas
+      vars:
+        ansible_python_interpreter: /usr/bin/python3
+
+    - name: Installing Ansible
+      apt:
+        name: ansible
+        state: present
+
+    - name: Downloading kubectl
+      get_url:
+        url: "https://dl.k8s.io/release/{{ lookup('url', 'https://dl.k8s.io/release/stable.txt') }}/bin/linux/amd64/kubectl"
+        dest: /tmp/kubectl
+        mode: 0755
+
+    - name: Installing kubectl
+      command: install -o root -g root -m 0755 /tmp/kubectl /usr/local/bin/kubectl
+
+    - name: Download Helm script
+      get_url:
+        url: "https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3"
+        dest: "/tmp/get_helm.sh"
+        mode: "0777"
+
+    - name: Execute Helm script
+      command: "/tmp/get_helm.sh"
