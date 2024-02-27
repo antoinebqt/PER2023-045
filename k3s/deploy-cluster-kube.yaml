@@ -109,5 +109,17 @@
       args:
         executable: /bin/bash
 
+    - name: Install jq
+      ansible.builtin.package:
+        name: jq
+        state: present
+
+    - name: Install Kubernetes Collection core
+      ansible.builtin.command:
+        cmd: ansible-galaxy collection install kubernetes.core
+
+    - name: Create .kube directory
+      command: mkdir -p ~/.kube
+
     - name: Set kube config
-      command: cp -r /etc/rancher/k3s/k3s.yaml ~/.kube/config
+      command: cp /etc/rancher/k3s/k3s.yaml ~/.kube/config
