@@ -123,3 +123,8 @@
 
     - name: Set kube config
       command: cp /etc/rancher/k3s/k3s.yaml ~/.kube/config
+
+    - name: Clone the Git repository
+      git:
+        repo: "https://github.com/antoinebqt/PER2023-045.git"  # URL of the Git repository
+        dest: "/tmp/PER2023-045"
