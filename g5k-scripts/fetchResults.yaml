@@ -1,0 +1,14 @@
+---
+- name: Copy result files from remote to local
+  hosts: master-node
+  become: true
+  tasks:
+    - name: Copy input folder
+      fetch:
+        src: /tmp/PER2023-045/python/input
+        dest: ~/input
+
+    - name: Copy output files from remote to local
+        fetch:
+          src: /tmp/PER2023-045/python/output
+          dest: ~/output

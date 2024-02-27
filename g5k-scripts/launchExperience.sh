@@ -1,0 +1,1 @@
+/home/$(echo "$USER")/.local/bin/ansible-playbook g5k-scripts/launchExperience.yaml -i k3s/hosts.ini

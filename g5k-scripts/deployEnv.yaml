@@ -1,0 +1,13 @@
+- name: Deploy stack
+  hosts: master-node
+  become: true
+  tasks:
+    - name: Clone the Git repository
+      git:
+        repo: "https://github.com/antoinebqt/PER2023-045.git"  # URL of the Git repository
+        dest: "/tmp/PER2023-045"
+    
+    - name: Deploy the stack
+      shell: "/tmp/PER2023-045/scripts/deployEnv.sh"
+        args:
+          executable: /bin/bash

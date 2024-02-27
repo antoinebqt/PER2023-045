@@ -64,7 +64,7 @@
     - name: Unset ANSIBLE_HOST_KEY_CHECKING
       shell: unset ANSIBLE_HOST_KEY_CHECKING
 
-- name: Déploiement des requirments
+- name: Déploiement des requirments pour l'execution de la stack et des tests sur le master
   hosts: master-node
   become: true
   tasks:
@@ -78,6 +78,11 @@
         - python3-pandas
       vars:
         ansible_python_interpreter: /usr/bin/python3
+
+    - name: Install Git
+      apt:
+        name: git
+        state: present
 
     - name: Installing Ansible
       apt:
@@ -96,8 +101,13 @@
     - name: Download Helm script
       get_url:
         url: "https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3"
-        dest: "/tmp/get_helm.sh"
+        dest: /tmp/get_helm.sh
         mode: "0777"
 
     - name: Execute Helm script
-      command: "/tmp/get_helm.sh"
+      shell: "/tmp/get_helm.sh"
+      args:
+        executable: /bin/bash
+
+    - name: Set kube config
+      command: cp -r /etc/rancher/k3s/k3s.yaml ~/.kube/config
