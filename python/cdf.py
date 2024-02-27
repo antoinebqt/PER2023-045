@@ -8,8 +8,8 @@ import matplotlib as mpl
 
 
 # Créer le dossier 'output' s'il n'existe pas déjà
-if not os.path.exists('output'):
-    os.makedirs('output')
+if not os.path.exists('python/output'):
+    os.makedirs('python/output')
 
 def plotCDF():
     font = {'family': 'verdana',
