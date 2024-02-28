@@ -101,5 +101,5 @@ cd ~/PER2023-045
 - Retrieve the experience data
 ```bash
 # from your home Grid5000, not the master node
-scp -r root@ip/name:~/PER2023-045/input ~
+scp -r root@ip:~/PER2023-045/output ~
 ```
