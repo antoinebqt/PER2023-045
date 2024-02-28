@@ -64,3 +64,38 @@ scripts/cleanCluster.sh
 ```bash
 scripts/uninstall.sh
 ```
+
+### Configuration with Grid5000
+- All information about Grid5000 can be found on [getting started](https://www.grid5000.fr/w/Getting_Started)
+- Clone the project on your home directory on a site of Grid5000 (for exemple **sophia**)
+- Get the number of hosts that you want for the k8s cluster
+```bash
+# Exmple of 2 nodes for 2 hours
+oarsub -I -l host=2,walltime=2 -t deploy
+kadeploy3 debian11-min
+```
+- Modify the IP addresses in k3s/hosts.ini (only one master allowed)
+```bash
+cd clone_project
+./g5k-scripts/deploy-k3s-cluster.sh
+```
+- Connect to your master node with :
+```bash
+ssh root@ip_address
+ssh root@grid_node_name
+```
+- Deploy the stack :
+```bash
+cd ~/PER2023-045
+./scripts/deployEnv.sh
+```
+- Wait 10 minutes then launch the experience
+```bash
+./scripts/launchExperience
+```
+- Wait until the end of the experience
+- Retrieve the experience data
+```bash
+# from your home Grid5000, not the master node
+scp -r root@ip/name:~/PER2023-045/input ~
+```
