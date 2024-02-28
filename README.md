@@ -74,6 +74,7 @@ scripts/uninstall.sh
 oarsub -I -l host=2,walltime=2 -t deploy
 kadeploy3 debian11-min
 ```
+- Clone this project in your Grid5000 home directory
 - Modify the IP addresses in k3s/hosts.ini (only one master allowed)
 ```bash
 cd clone_project
