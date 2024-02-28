@@ -95,7 +95,7 @@ cd ~/PER2023-045
 ```
 - Wait 10 minutes then launch the experience
 ```bash
-./scripts/launchExperience
+./scripts/launchExperience.sh
 ```
 - Wait until the end of the experience
 - Retrieve the experience data
