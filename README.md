@@ -85,30 +85,33 @@ kadeploy3 debian11-min
 git clone https://github.com/antoinebqt/PER2023-045.git
 ```
 - Modify the IP addresses in K3s/hosts.ini (only one master is allowed)
+- Deploy the K3s cluster
 
 NB: You must be in the root folder of the project to use the scripts.
 ```bash
 cd PER2023-045
 chmod +x scripts/chmodAll.sh && scripts/chmodAll.sh
+vim k3s/hosts.ini
 scripts/deploy-k3s-cluster.sh
 ```
-- Connect to your master node with :
+- Connect to your master node
 ```bash
-ssh root@ip_address
-ssh root@grid_node_name
+ssh root@<ip_address>
+ssh root@<grid_node_name>
 ```
-- Deploy the stack :
+- Deploy the stack
 ```bash
 cd ~/PER2023-045
-./scripts/deployEnv.sh
+scripts/deployEnv.sh
 ```
 - Wait 10 minutes then launch the experience
 ```bash
-./scripts/launchExperience.sh
+scripts/launchExperience.sh
 ```
 - Wait until the end of the experience
 - Retrieve the experience data
 ```bash
 # from your home Grid5000, not the master node
-scp -r root@ip:~/PER2023-045/output ~
+scp -r root@<ip_address>:~/PER2023-045/output ~
 ```
+The data will be in your home directory
