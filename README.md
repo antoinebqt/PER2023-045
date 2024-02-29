@@ -81,7 +81,7 @@ git clone https://github.com/antoinebqt/PER2023-045.git
 - Modify the IP addresses in k3s/hosts.ini (only one master allowed)
 ```bash
 cd PER2023-045
-./g5k-scripts/deploy-k3s-cluster.sh
+./scripts/deploy-k3s-cluster.sh
 ```
 - Connect to your master node with :
 ```bash
