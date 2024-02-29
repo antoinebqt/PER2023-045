@@ -11,10 +11,6 @@
     - name: Apply Kafka Topic
       command: kubectl apply -f ../kubernetes/kafka-topic.yaml
 
-#    - name: Wait for Kafka pods to be ready
-#      pause:
-#        minutes: 2
-
 - name: Deploy Prometheus, Grafana, and related resources
   hosts: localhost
 

@@ -1,25 +1,25 @@
 ---
-- name: Exporter ANSIBLE_HOST_KEY_CHECKING
+- name: Export ANSIBLE_HOST_KEY_CHECKING
   hosts: all
   tasks:
-    - name: Exporter ANSIBLE_HOST_KEY_CHECKING=False
+    - name: Export ANSIBLE_HOST_KEY_CHECKING=False
       shell: export ANSIBLE_HOST_KEY_CHECKING=False
 
-- name: Déploiement de K3s Cluster
+- name: Deploy K3s Cluster
   hosts: master-node
   become: true
   tasks:
-    - name: Mise à jour du système
+    - name: Update the system
       apt:
         update_cache: yes
         upgrade: dist
 
-    - name: Installation de Curl
+    - name: Installing Curl
       apt:
         name: curl
         state: present
 
-    - name: Téléchargement du script d'installation de K3s
+    - name: Download the K3s installation script
       shell: curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="--disable servicelb --flannel-backend=wireguard-native --disable traefik --node-ip {{ ansible_host }} --cluster-cidr 10.42.0.0/16 --service-cidr 10.43.0.0/16" sh -
 
 - hosts: master-node
@@ -38,16 +38,16 @@
       debug:
         msg: "The value from the file is {{ value_from_file }}"
 
-- name: Ajout des noeuds au groupe d'inventaire "k3s_nodes"
+- name: Add nodes to the "k3s_nodes" inventory group
   hosts: worker-nodes
   become: true
   tasks:
-    - name: Mise à jour du système
+    - name: Update the system
       apt:
         update_cache: yes
         upgrade: dist
 
-    - name: Installation de Curl
+    - name: Installing Curl
       apt:
         name: curl
         state: present
@@ -55,16 +55,16 @@
     - debug: 
         var: hostvars[groups['master-node'][0]]['value_from_file']
 
-    - name: Téléchargement du script d'installation des nodes
+    - name: Download the K3s installation script for the worker nodes
       shell: curl -sfL https://get.k3s.io | K3S_URL=https://{{ hostvars[groups['master-node'][0]]['ansible_default_ipv4']['address'] }}:6443 K3S_TOKEN={{ hostvars[groups['master-node'][0]]['value_from_file'] }} sh -
 
-- name: Nettoyer ANSIBLE_HOST_KEY_CHECKING
+- name: Unset ANSIBLE_HOST_KEY_CHECKING
   hosts: all
   tasks:
     - name: Unset ANSIBLE_HOST_KEY_CHECKING
       shell: unset ANSIBLE_HOST_KEY_CHECKING
 
-- name: Déploiement des requirments pour l'execution de la stack et des tests sur le master
+- name: Deploy requirements for the stack and tests on the master
   hosts: master-node
   become: true
   tasks:
@@ -79,7 +79,7 @@
       vars:
         ansible_python_interpreter: /usr/bin/python3
 
-    - name: Install Git
+    - name: Installing Git
       apt:
         name: git
         state: present
@@ -89,13 +89,13 @@
         name: ansible
         state: present
 
-    - name: Downloading kubectl
+    - name: Downloading Kubectl
       get_url:
         url: "https://dl.k8s.io/release/{{ lookup('url', 'https://dl.k8s.io/release/stable.txt') }}/bin/linux/amd64/kubectl"
         dest: /tmp/kubectl
         mode: 0755
 
-    - name: Installing kubectl
+    - name: Installing Kubectl
       command: install -o root -g root -m 0755 /tmp/kubectl /usr/local/bin/kubectl
 
     - name: Download Helm script
