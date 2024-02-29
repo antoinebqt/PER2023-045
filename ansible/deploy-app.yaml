@@ -1,4 +1,3 @@
----
 - name: Deploy Application
   hosts: localhost
 
@@ -12,10 +11,6 @@
       kubernetes.core.k8s:
         state: present
         src: ../kubernetes/role-binding.yaml
-
-    - name: Wait a minute before deploying the application
-      pause:
-        minutes: 1
 
     - name: Apply Deployment
       kubernetes.core.k8s:

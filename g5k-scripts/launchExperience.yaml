@@ -1,8 +1,0 @@
-- name: Launch the experience
-  hosts: master-node
-  become: true
-  tasks:
-    - name: Launch the experience
-      shell: "/tmp/PER2023-045/scripts/launchExperrience.sh"
-        args:
-          executable: /bin/bash
