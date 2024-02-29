@@ -9,41 +9,51 @@
 
 ---
 
-### Requirements
-- 16 CPU
-- 16 GB RAM
+### Technologies
 - Docker
-- Kubernetes
+- Kubernetes (MiniKube, K3s)
 - Kafka
 - Ansible
+- Prometheus
+- Grafana
+- Python
+- Helm
 
 ---
 
 ### Project structure
-- [ansible](https://github.com/antoinebqt/TER/tree/master/ansible) folder which contains the `.yaml` files to automatically deploy the the application, the Kafka cluster, Prometheus and Grafana
-- [kubernetes](https://github.com/antoinebqt/TER/tree/master/kubernetes) folder which contains the `.yaml` files to deploy all of the kubernetes ressources
-- [scripts](https://github.com/antoinebqt/TER/tree/master/scripts) contains `.sh` files using Ansible commands:
-  - `requirements1.sh`: install Docker
-  - `requirements2.sh`: install Kubectl, Minikube, Helm, Python packages and Ansible
-  - `deployAll.sh`: deploy the application, Kafka, Prometheus and Grafana
-  - `cleanCluster.sh`: delete kubernetes ressources
-  - `uninstall.sh`: delete kubernetes ressources and uninstall Docker, Kubectl, Minikube, Helm, Python packages and Ansible
-  - `deployApp.sh`, `deployKafka.sh`, `deployPrometheus.sh` allow to deploy each element separately
+- [ansible](https://github.com/antoinebqt/TER/tree/master/ansible) folder which contains the `.yaml` files to automatically deploy the application and its environment
+- [kubernetes](https://github.com/antoinebqt/TER/tree/master/kubernetes) folder which contains the `.yaml` files used by the Ansible scripts to deploy all the Kubernetes ressources
+- [scripts](https://github.com/antoinebqt/TER/tree/master/scripts) folder which contains the following `.sh` files:
+  - `chmodAll.sh`: give the execution rights to all the scripts
+  - `deploy-k3s-cluster.sh`: deploy a K3s cluster on a list of hosts
+  - `deployEnv.sh`: deploy all the environment needed for the application
+  - `launchExperience.sh`: launch the execution of the application, retrieve the data and generate the graphs in the [`python/output`](https://github.com/antoinebqt/TER/tree/master/python/output) folder
+  - `mnk-requirements1.sh`: install Docker for Minikube
+  - `mnk-requirements2.sh`: install Kubectl, Minikube, Helm, Python packages and Ansible
 
 ---
  
-### First configuration on a clean machine
-You must be in the root folder to use the scripts.
+### First configuration with Minikube on a single, clean machine
+NB: You must be in the root folder to use the scripts.
 
-- Execute the following command in ordrer to be able to **execute all the scripts**
+#### Requirements
+- 18 CPU cores
+- 18 GB of RAM
+
+#### Steps
+
+- Execute the following command in order to be able to **execute all the scripts**
 ```bash
 chmod +x scripts/chmodAll.sh && scripts/chmodAll.sh
 ```
-- Install Docker
+- **Install** Docker
 ```bash
 scripts/mnk-requirements1.sh
 ```
 - Once the previous script is done, **exit** the machine and **reconnect** to it in order to update the Docker users group, thus avoiding using the `sudo su` command everytime
+
+
 - Install Kubectl, Minikube, Helm, Python packages and Ansible
 ```bash
 scripts/mnk-requirements2.sh
@@ -53,22 +63,18 @@ scripts/mnk-requirements2.sh
 scripts/deployEnv.sh
 ```
 
+- **Launch** the experience
+```bash
+scripts/launchExperience.sh
+```
+
 ---
 
-### Cleaning & Uninstalling
-- If you only want to **delete the kubernetes ressources**, just execute the following command:
-```bash
-scripts/cleanCluster.sh
-```
-- But if you want to completely **uninstall** the tools used for this project, use the following command. It will delete kubernetes ressources and uninstall Docker, Kubectl, Minikube, Helm, Python packages and Ansible
-```bash
-scripts/uninstall.sh
-```
-
-### Configuration with Grid5000
+### Second configuration with K3s on a cluster of clean machines (Grid5000)
+#### Steps
 - All information about Grid5000 can be found on [getting started](https://www.grid5000.fr/w/Getting_Started)
 - Clone the project on your home directory on a site of Grid5000 (for exemple **sophia**)
-- Get the number of hosts that you want for the k8s cluster
+- Get the number of hosts that you want for the K8s cluster
 ```bash
 # Exmple of 2 nodes for 2 hours
 oarsub -I -l host=2,walltime=2 -t deploy
@@ -78,10 +84,13 @@ kadeploy3 debian11-min
 ```bash
 git clone https://github.com/antoinebqt/PER2023-045.git
 ```
-- Modify the IP addresses in k3s/hosts.ini (only one master allowed)
+- Modify the IP addresses in K3s/hosts.ini (only one master is allowed)
+
+NB: You must be in the root folder of the project to use the scripts.
 ```bash
 cd PER2023-045
-./scripts/deploy-k3s-cluster.sh
+chmod +x scripts/chmodAll.sh && scripts/chmodAll.sh
+scripts/deploy-k3s-cluster.sh
 ```
 - Connect to your master node with :
 ```bash
