@@ -81,6 +81,7 @@ git clone https://github.com/antoinebqt/PER2023-045.git
 - Modify the IP addresses in k3s/hosts.ini (only one master allowed)
 ```bash
 cd PER2023-045
+vim ./k3s/hosts.ini
 ./scripts/deploy-k3s-cluster.sh
 ```
 - Connect to your master node with :
@@ -91,7 +92,6 @@ ssh root@grid_node_name
 - Deploy the stack :
 ```bash
 cd ~/PER2023-045
-vim ./k3s/hosts.ini
 ./scripts/deployEnv.sh
 ```
 - Wait 10 minutes then launch the experience
