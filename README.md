@@ -71,6 +71,10 @@ scripts/launchExperience.sh
 ---
 
 ### Second configuration with K3s on a cluster of clean machines (Grid5000)
+
+#### Requirements
+- An account on Grid5000
+
 #### Steps
 - All information about Grid5000 can be found on [getting started](https://www.grid5000.fr/w/Getting_Started)
 - Clone the project on your home directory on a site of Grid5000 (for exemple **sophia**)
