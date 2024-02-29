@@ -91,6 +91,7 @@ ssh root@grid_node_name
 - Deploy the stack :
 ```bash
 cd ~/PER2023-045
+vim ./k3s/hosts.ini
 ./scripts/deployEnv.sh
 ```
 - Wait 10 minutes then launch the experience
