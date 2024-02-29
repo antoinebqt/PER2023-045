@@ -117,6 +117,6 @@ scripts/launchExperience.sh
 - Retrieve the experience data
 ```bash
 # from your home Grid5000, not the master node
-scp -r root@<ip_address>:~/PER2023-045/output ~
+scp -r root@<ip_address>:~/PER2023-045/python/output ~
 ```
 The data will be in your home directory
