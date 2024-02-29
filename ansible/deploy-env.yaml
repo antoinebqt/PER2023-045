@@ -50,7 +50,7 @@
     - name: Install elastic operator
       command: helm install elastic-operator elastic/eck-operator -n elastic-system --create-namespace
 
-    - name: Creat elastic namespace
+    - name: Create elastic namespace
       command: kubectl create namespace elastic
 
     - name: Apply Elastic Priority Classes
