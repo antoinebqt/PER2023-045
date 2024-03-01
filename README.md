@@ -81,7 +81,7 @@ scripts/launchExperience.sh
 - Clone the project on your home directory on a site of Grid5000 (for exemple **sophia**)
 - Get the number of hosts that you want for the K8s cluster
 ```bash
-# Exmple of 2 nodes for 2 hours
+# Exemple of 2 nodes for 2 hours
 oarsub -I -l host=2,walltime=2 -t deploy
 kadeploy3 debian11-min
 ```
