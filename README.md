@@ -97,6 +97,7 @@ NB: You must be in the root folder of the project to use the scripts.
 cd PER2023-045
 chmod +x scripts/chmodAll.sh && scripts/chmodAll.sh
 vim k3s/hosts.ini
+pip install ansible # not necessary if already installed
 scripts/deploy-k3s-cluster.sh
 ```
 - Connect to your master node
